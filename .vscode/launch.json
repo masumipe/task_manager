@@ -4,11 +4,7 @@
         "name": "Launch Chrome",
         "request": "launch",
         "type": "chrome",
-<<<<<<< HEAD
-        "url": "http://localhost:8080/task_monitor/public/index.php",
-=======
         "url": "http://localhost/task_manager/public/index.php",
->>>>>>> c564c55d45e4513f128a588a8173151095e5f6b1
         "webRoot": "${workspaceFolder}"
     }
     ]

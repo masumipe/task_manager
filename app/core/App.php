@@ -1,11 +1,7 @@
 <?php
 // Main App class for routing
 class App {
-<<<<<<< HEAD
     protected $controller = 'DashboardController'; // Set default to DashboardController
-=======
-    protected $controller = 'HomeController'; // Set default to HomeController
->>>>>>> c564c55d45e4513f128a588a8173151095e5f6b1
     protected $method = 'index';
     protected $params = [];
     public function __construct() {

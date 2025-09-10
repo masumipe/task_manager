@@ -6,15 +6,9 @@ class AuthController extends Controller {
         if (session_status() !== PHP_SESSION_ACTIVE) {
             session_start();
         }
-<<<<<<< HEAD
         // If already logged in, redirect to dashboard
         if (isset($_SESSION['user_id']) && !empty($_SESSION['user_id'])) {
             header('Location: ' . ROOT . 'dashboard');
-=======
-        // If already logged in, redirect to Home
-        if (isset($_SESSION['user_id']) && !empty($_SESSION['user_id'])) {
-            header('Location: ' . ROOT . 'home');
->>>>>>> c564c55d45e4513f128a588a8173151095e5f6b1
             exit;
         }
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
