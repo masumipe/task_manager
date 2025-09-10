@@ -13,14 +13,16 @@ foreach ($loginPaths as $loginPath) {
     break;
   }
 }
+$user = null;
 if (!$onLoginPage) {
+  require_once __DIR__ . '/../core/csrf.php';
   Auth::check();
   $user = Auth::user();
-} else {
-  $user = null;
 }
 $menuModel = new Menu();
-$menus = $user ? $menuModel->getMenuForUser($user['id']) : [];
+$menus = ($user && isset($user['id'])) ? $menuModel->getMenuForUser($user['id']) : [];
+// var_dump($user);
+// var_dump($menus);
 // Build menu tree
 $menuTree = [];
 foreach ($menus as $menu) {
@@ -33,6 +35,7 @@ foreach ($menus as $menu) {
   if ($menu['parent_id'] != 0 && isset($menuTree[$menu['parent_id']])) {
     $menuTree[$menu['parent_id']]['children'][] = $menu;
   }
+  
 }
 ?>
 <!DOCTYPE html>
@@ -76,8 +79,8 @@ foreach ($menus as $menu) {
       </ul>
       <div class="d-flex">
         <?php if ($user): ?>
-          <span class="me-2">Welcome, <?= htmlspecialchars($user['full_name']) ?></span>
-          <?php if (isset($user['full_name']) && strtolower($user['full_name']) === 'admin'): ?>
+          <span class="me-2">Welcome, <?= isset($user['user_name']) ? htmlspecialchars($user['user_name']) : '' ?></span>
+          <?php if (isset($user['user_name']) && strtolower($user['user_name']) === 'admin'): ?>
             <a href="<?= ROOT ?>dbbackup/run" class="btn btn-warning me-2"><i class="fa fa-database"></i> Backup DB</a>
           <?php endif; ?>
           <a href="<?= ROOT ?>auth/logout" class="btn btn-outline-primary">Logout</a>

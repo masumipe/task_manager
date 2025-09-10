@@ -34,6 +34,7 @@ class Auth
     {
         return [
             'id' => $_SESSION['user_id'] ?? null,
+            'user_name' => $_SESSION['user_name'] ?? null,
             'full_name' => $_SESSION['full_name'] ?? null,
             'permission_level' => $_SESSION['permission_level'] ?? null
         ];

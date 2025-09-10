@@ -14,17 +14,17 @@ class AuthController extends Controller {
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             check_csrf();
             $userModel = $this->model('User');
-            $user = $userModel->findByPhone($_POST['phone_number']);
+            $user = $userModel->findByUserName($_POST['user_name']);
             if ($user && password_verify($_POST['password'], $user['password_hash'])) {
                 $_SESSION['user_id'] = $user['id'];
-                $_SESSION['full_name'] = $user['full_name'];
+                $_SESSION['user_name'] = $user['user_name'];
                 $_SESSION['permission_level'] = $user['permission_level'] ?? 1;
                 $_SESSION['LAST_ACTIVITY'] = time();
                 $_SESSION['err_log'] = 'No errors';
                 header('Location: ' . ROOT . 'dashboard');
                 exit;
             } else {
-                $error = 'Invalid phone number or password.';
+                $error = 'Invalid user name or password.';
             }
         }
         require_once __DIR__ . '/../views/auth/login.php';

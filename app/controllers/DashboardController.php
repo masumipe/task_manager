@@ -6,10 +6,7 @@ class DashboardController extends Controller
     {
         Auth::check();
         $dashboardModel = $this->model('Dashboard');
-        $metrics = $dashboardModel->getMetrics();
-        $topOverdues = $dashboardModel->getTopOverdues();
-        $trend_collection = $dashboardModel->getMonthlyCollectionTrend();
-        $trend_expenses = $dashboardModel->getMonthlyExpensesTrend();
+        // $metrics = $dashboardModel->getMetrics();
         require_once __DIR__ . '/../templates/header.php';
         require __DIR__ . '/../views/dashboard/index.php';
         require_once __DIR__ . '/../templates/footer.php';

@@ -23,9 +23,9 @@
                         <form method="POST" action="<?= ROOT ?>auth/login">
                             <?= csrf_field() ?>
                             <div class="mb-3">
-                                <label for="phone_number" class="form-label">Phone Number</label>
-                                <input type="text" class="form-control border border-primary" id="phone_number"
-                                    name="phone_number" required>
+                                <label for="user_name" class="form-label">User Name</label>
+                                <input type="text" class="form-control border border-primary" id="user_name"
+                                    name="user_name" required>
                             </div>
                             <div class="mb-3">
                                 <label for="password" class="form-label">Password</label>
