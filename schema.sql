@@ -28,9 +28,14 @@ CREATE TABLE `menus` (
   `id` int(11) NOT NULL,
   `name` varchar(100) NOT NULL,
   `url` varchar(255) DEFAULT NULL,
+  `page_type` varchar(50) DEFAULT 'page', -- page, report, dashboard, etc.
+  `is_active` tinyint(1) DEFAULT 1, -- 1=active, 0=inactive
   `parent_id` int(11) NOT NULL DEFAULT 0,
   `icon` varchar(50) DEFAULT NULL,
-  `sort_order` int(11) DEFAULT 0
+  `sort_order` int(11) DEFAULT 0,
+  `type` varchar(20) DEFAULT 'link', -- link, dropdown, separator
+  `visible` tinyint(1) DEFAULT 1, -- 1=visible, 0=hidden
+  `permission_type` varchar(20) DEFAULT 'view' -- view, create, update, delete
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
 --
@@ -54,7 +59,11 @@ CREATE TABLE `menu_permission` (
   `id` int(10) NOT NULL,
   `user_id` int(10) NOT NULL,
   `menu_id` int(10) NOT NULL,
-  `permission` int(10) NOT NULL,
+  `can_view` tinyint(1) DEFAULT 1,
+  `can_view_page` tinyint(1) DEFAULT 1,
+  `can_create` tinyint(1) DEFAULT 0,
+  `can_update` tinyint(1) DEFAULT 0,
+  `can_delete` tinyint(1) DEFAULT 0,
   `createdby` int(10) NOT NULL,
   `updatedate` timestamp NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
@@ -63,11 +72,11 @@ CREATE TABLE `menu_permission` (
 -- Dumping data for table `menu_permission`
 --
 
-INSERT INTO `menu_permission` (`id`, `user_id`, `menu_id`, `permission`, `createdby`, `updatedate`) VALUES
-(1, 1, 1, 1, 1, '2025-06-14 14:55:39'),
-(2, 1, 2, 1, 1, '2025-06-14 14:55:39'),
-(3, 1, 3, 1, 1, '2025-06-14 14:55:39'),
-(4, 1, 4, 1, 1, '2025-06-14 14:55:39');
+INSERT INTO `menu_permission` (`id`, `user_id`, `menu_id`, `can_view`, `can_create`, `can_update`, `can_delete`, `createdby`, `updatedate`) VALUES
+(1, 1, 1, 1, 1, 1, 1, 1, '2025-06-14 14:55:39'),
+(2, 1, 2, 1, 0, 0, 0, 1, '2025-06-14 14:55:39'),
+(3, 1, 3, 1, 1, 1, 0, 1, '2025-06-14 14:55:39'),
+(4, 1, 4, 1, 0, 0, 0, 1, '2025-06-14 14:55:39');
 
 -- --------------------------------------------------------
 
@@ -266,3 +275,5 @@ ALTER TABLE `tasks`
 ALTER TABLE `user_role`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 COMMIT;
+
+

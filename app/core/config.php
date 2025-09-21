@@ -1,10 +1,10 @@
 <?php
 // Application and Database configuration
 if (!defined('ROOT')) {
-    define('ROOT', 'http://localhost/task_manager/');
+    define('ROOT', 'http://localhost:8080/task_manager/');
 }
 return [
-    'base_url' => 'http://localhost/task_manager/',
+    'base_url' => 'http://localhost:8080/task_manager/',
     'db' => [
         'host' => 'localhost',
         'name' => 'task_monitor',

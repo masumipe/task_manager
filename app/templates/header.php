@@ -35,7 +35,7 @@ foreach ($menus as $menu) {
   if ($menu['parent_id'] != 0 && isset($menuTree[$menu['parent_id']])) {
     $menuTree[$menu['parent_id']]['children'][] = $menu;
   }
-  
+
 }
 ?>
 <!DOCTYPE html>
@@ -51,8 +51,8 @@ foreach ($menus as $menu) {
 </head>
 
 <body>
-  <nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <div class="container-fluid">
+  <div class="container-fluid">
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
       <a class="navbar-brand text-primary" href="<?= ROOT ?>dashboard">BMS</a>
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
         <?php foreach ($menuTree as $menu): ?>
@@ -86,6 +86,4 @@ foreach ($menus as $menu) {
           <a href="<?= ROOT ?>auth/logout" class="btn btn-outline-primary">Logout</a>
         <?php endif; ?>
       </div>
-    </div>
-  </nav>
-  <div class="container mt-3">
+    </nav>
